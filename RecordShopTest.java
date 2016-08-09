@@ -33,21 +33,20 @@ public class RecordShopTest{
 
   @Test
   public void findIndexOfAlbum(){
+    recordShop.bookInStock(album);
     recordShop.bookInStock(album2);
     recordShop.bookInStock(album3);
-    recordShop.bookInStock(album);
     assertEquals(3, recordShop.stockCheck());
-    assertEquals(2, recordShop.findIndex(album));
+    assertEquals(2, recordShop.findIndex(album3));
   }
 
   @Test
   public void sellAnAlbum(){
-    recordShop.bookInStock(album2);
     recordShop.bookInStock(album);
-
+    recordShop.bookInStock(album2);
     recordShop.bookInStock(album3);
     assertEquals(3, recordShop.stockCheck());
-    recordShop.sellAlbum(album);
+    recordShop.sellAlbum(album3);
     assertEquals(2, recordShop.stockCheck());
   }
 

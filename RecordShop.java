@@ -22,29 +22,30 @@ public class RecordShop {
   }
 
   public int findIndex(Album album){
-    for (Album album1 : stock) {
-      if (album1.getTitle() == album.title) {
-         return stock.indexOf(album1);
+    for (Album albumz : stock) {
+      if (albumz.getTitle() == album.title) {
+         return stock.indexOf(albumz);
          // stock.remove(i);
       }
     }
     return -1;
   }
 
-
   public void sellAlbum(Album album){
-    for (Album albun : stock) {
-      if (albun.getTitle() == album.title) {
-         int i = stock.indexOf(albun);
-          stock.remove(i);
-      }
-    }
+    int index = findIndex(album);
+    stock.remove(index);
   }
 
-  // public void sellAnAlbum(Album album){
-  //   int index = findIndex(album);
-  //   return stock.remove(index);
+  // public void sellAlbum(Album album){
+  //   for (Album albumz : stock) {
+  //     if (albumz.getTitle() == album.title) {
+  //        int i = stock.indexOf(albumz);
+  //         stock.remove(i);
+  //     }
+  //   }
   // }
+
+
 
 }
 
