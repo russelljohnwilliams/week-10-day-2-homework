@@ -8,7 +8,7 @@ public class RecordShopTest{
   @Before
   public void before(){
     recordShop = new RecordShop("Surface Noise");
-    album = new Album("My Bloody Valentine", "Loveless", 7.99);
+    album = new Album();
   }
 
   @Test

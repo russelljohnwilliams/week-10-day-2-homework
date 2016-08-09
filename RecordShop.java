@@ -17,8 +17,13 @@ public class RecordShop {
     return stock.size();
   }
 
+<<<<<<< HEAD
   public void bookInStock(Album album){
     stock.add(album);
+=======
+  public void checkInStock(Album album){
+    stock.add(album)
+>>>>>>> parent of adaaa10... 6 tests running after refactor
   }
 
   // public String getAlbumTitle(){
