@@ -19,7 +19,7 @@ public class RecordShop {
 
   public void bookInStock(Album album){
     stock.add(album);
-  }
+}
 
   // public String getAlbumTitle(){
   //   for(Album album : stock){
