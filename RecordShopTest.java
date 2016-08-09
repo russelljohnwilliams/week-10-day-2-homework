@@ -4,11 +4,15 @@ import org.junit.*;
 public class RecordShopTest{
   RecordShop recordShop;
   Album album;
+  Album album2;
+  Album album3;
 
   @Before
   public void before(){
     recordShop = new RecordShop("Surface Noise");
-    album = new Album();
+    album = new Album("My Bloody Valentine", "Loveless", 7.99);
+    album2 = new Album("Nightclubbing", "Grace Jones", 5.99);
+    album3 = new Album("Mug Museum", "Cate Le Bon", 8.99);
   }
 
   @Test
@@ -27,12 +31,24 @@ public class RecordShopTest{
     assertEquals(1, recordShop.stockCheck());
   }
 
-  // @Test
-  // public void sellAnAlbum(){
-  //   recordShop.checkInStock(album);
-  //   assertEquals(1, recordShop.stockCheck());
-  //   recordShop.sellAnAlbum();
-  //   assertEquals(0, recordShop.stockCheck());
-  // }
+  @Test
+  public void findIndexOfAlbum(){
+    recordShop.bookInStock(album2);
+    recordShop.bookInStock(album3);
+    recordShop.bookInStock(album);
+    assertEquals(3, recordShop.stockCheck());
+    assertEquals(2, recordShop.findIndex(album));
+  }
+
+  @Test
+  public void sellAnAlbum(){
+    recordShop.bookInStock(album2);
+    recordShop.bookInStock(album);
+
+    recordShop.bookInStock(album3);
+    assertEquals(3, recordShop.stockCheck());
+    recordShop.sellAlbum(album);
+    assertEquals(2, recordShop.stockCheck());
+  }
 
 }

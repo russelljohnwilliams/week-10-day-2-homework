@@ -1,7 +1,7 @@
 public class Album{
-  private String artist;
-  private String title;
-  private double price;
+  public String artist;
+  public String title;
+  public double price;
 
   public Album(String artist, String title, double price){
     this.artist = artist;

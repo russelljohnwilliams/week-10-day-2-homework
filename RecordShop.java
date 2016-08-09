@@ -1,8 +1,8 @@
 import java.util.*;
 
 public class RecordShop {
-  private String name;
-  private ArrayList<Album> stock;
+  public String name;
+  public ArrayList<Album> stock;
 
   public RecordShop(String name){
     this.name = name;
@@ -21,18 +21,31 @@ public class RecordShop {
     stock.add(album);
   }
 
-  // public String getAlbumTitle(){
-  //   for(Album album : stock){
-  //     System.out.println(album.title);
-  //   }
-  // }
+  public int findIndex(Album album){
+    for (Album album1 : stock) {
+      if (album1.getTitle() == album.title) {
+         return stock.indexOf(album1);
+         // stock.remove(i);
+      }
+    }
+    return -1;
+  }
 
 
-  // public void sellAnAlbum(){
-  //   for (int i = 0; i < stock.length; i++){
-  //     stock[i] = null;
-  //   }
+  public void sellAlbum(Album album){
+    for (Album albun : stock) {
+      if (albun.getTitle() == album.title) {
+         int i = stock.indexOf(albun);
+          stock.remove(i);
+      }
+    }
+  }
+
+  // public void sellAnAlbum(Album album){
+  //   int index = findIndex(album);
+  //   return stock.remove(index);
   // }
+
 }
 
 
