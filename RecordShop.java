@@ -18,7 +18,7 @@ public class RecordShop {
   }
 
   public void checkInStock(Album album){
-    stock.add(album)
+    stock.add(album);
   }
 
   // public void sellAnAlbum(){
