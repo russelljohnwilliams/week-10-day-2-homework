@@ -23,7 +23,7 @@ public class RecordShopTest{
 
   @Test
   public void bookAlbumIntoStock(){
-    recordShop.checkInStock(album);
+    recordShop.bookInStock(album);
     assertEquals(1, recordShop.stockCheck());
   }
 

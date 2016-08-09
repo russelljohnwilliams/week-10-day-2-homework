@@ -17,9 +17,16 @@ public class RecordShop {
     return stock.size();
   }
 
-  public void checkInStock(Album album){
+  public void bookInStock(Album album){
     stock.add(album);
   }
+
+  // public String getAlbumTitle(){
+  //   for(Album album : stock){
+  //     System.out.println(album.title);
+  //   }
+  // }
+
 
   // public void sellAnAlbum(){
   //   for (int i = 0; i < stock.length; i++){
