@@ -1,0 +1,1997 @@
+Last login: Tue Aug  9 20:56:45 on ttys000
+➜  homework git:(master) ✗ git branch test
+➜  homework git:(master) ✗ git checkout test 
+RecordShop.class: needs merge
+RecordShop.java: needs merge
+RecordShopTest.class: needs merge
+error: you need to resolve your current index first
+➜  homework git:(master) ✗ git revert adaaa1
+error: revert is not possible because you have unmerged files.
+hint: Fix them up in the work tree, and then use 'git add/rm <file>'
+hint: as appropriate to mark resolution and make a commit.
+fatal: revert failed
+➜  homework git:(master) ✗ git add .
+➜  homework git:(master) ✗ git commit -m "x"
+[master 5304323] x
+ 4 files changed, 10 insertions(+), 1 deletion(-)
+ create mode 100644 Albums.class
+ create mode 100644 Albums.java
+➜  homework git:(master) git checkout -b test
+fatal: A branch named 'test' already exists.
+➜  homework git:(master) git checkout test 
+Switched to branch 'test'
+➜  homework git:(test) git revert adaaa1
+warning: Cannot merge binary files: RecordShopTest.class (HEAD vs. parent of adaaa10... 6 tests running after refactor)
+warning: Cannot merge binary files: RecordShop.class (HEAD vs. parent of adaaa10... 6 tests running after refactor)
+error: could not revert adaaa10... 6 tests running after refactor
+hint: after resolving the conflicts, mark the corrected paths
+hint: with 'git add <paths>' or 'git rm <paths>'
+hint: and commit the result with 'git commit'
+➜  homework git:(test) ✗ git commit -m "correct paths"
+U	RecordShop.class
+U	RecordShop.java
+U	RecordShopTest.class
+error: commit is not possible because you have unmerged files.
+hint: Fix them up in the work tree, and then use 'git add/rm <file>'
+hint: as appropriate to mark resolution and make a commit.
+fatal: Exiting because of an unresolved conflict.
+➜  homework git:(test) ✗ git add .
+➜  homework git:(test) ✗ git commit -m "rollback"
+[test 3af5bbc] rollback
+ 4 files changed, 6 insertions(+), 2 deletions(-)
+ create mode 100644 Albums.class
+ create mode 100644 Albums.java
+➜  homework git:(test) git checkout develop
+error: pathspec 'develop' did not match any file(s) known to git.
+➜  homework git:(test) git  checkout master 
+Switched to branch 'master'
+➜  homework git:(master) git merge test 
+Auto-merging RecordShop.java
+CONFLICT (content): Merge conflict in RecordShop.java
+Automatic merge failed; fix conflicts and then commit the result.
+➜  homework git:(master) ✗ git add .
+➜  homework git:(master) ✗ git commit -m "merge issue"
+[master 2616f6a] merge issue
+➜  homework git:(master) javac *.java                 
+RecordShopTest.java:11: error: constructor Album in class Album cannot be applied to given types;
+    album = new Album();
+            ^
+  required: String,String,double
+  found: no arguments
+  reason: actual and formal argument lists differ in length
+1 error
+➜  homework git:(master) javac *.java
+➜  homework git:(master) ✗ junit AlbumTest                                  
+JUnit version 4.11
+...
+Time: 0.004
+
+OK (3 tests)
+
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+...
+Time: 0.006
+
+OK (3 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+...
+Time: 0.008
+
+OK (3 tests)
+
+➜  homework git:(master) ✗ junit AlbumTest     
+JUnit version 4.11
+...
+Time: 0.004
+
+OK (3 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+RecordShop.java:26: error: cannot find symbol
+      if (album.getTitle() == title) {
+                              ^
+  symbol:   variable title
+  location: class RecordShop
+RecordShop.java:27: error: cannot find symbol
+        System.out.println(title); //gotcha!
+                           ^
+  symbol:   variable title
+  location: class RecordShop
+2 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:26: error: title has private access in Album
+      if (album.getTitle() == album.title) {
+                                   ^
+RecordShop.java:27: error: title has private access in Album
+        System.out.println(album.title); //gotcha!
+                                ^
+2 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:26: error: title has private access in Album
+      if (album.getTitle() == Album.title) {
+                                   ^
+RecordShop.java:27: error: title has private access in Album
+        System.out.println(Album.title); //gotcha!
+                                ^
+2 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:25: error: variable album is already defined in method getAlbumTitle(Album)
+    for (Album album : stock) {
+               ^
+RecordShop.java:26: error: cannot find symbol
+      if (album.getTitle() == title) {
+                              ^
+  symbol:   variable title
+  location: class RecordShop
+RecordShop.java:27: error: cannot find symbol
+        return title;
+               ^
+  symbol:   variable title
+  location: class RecordShop
+3 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:25: error: variable album is already defined in method getAlbumTitle(Album)
+    for (Album album : stock) {
+               ^
+RecordShop.java:26: error: title has private access in Album
+      if (album.getTitle() == album.title) {
+                                   ^
+RecordShop.java:27: error: title has private access in Album
+        return album.title;
+                    ^
+3 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:26: error: title has private access in Album
+      if (al.getTitle() == album.title) {
+                                ^
+RecordShop.java:27: error: title has private access in Album
+        return album.title;
+                    ^
+2 errors
+➜  homework git:(master) ✗ javac *.java
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+...
+Time: 0.004
+
+OK (3 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+RecordShop.java:25: error: variable album is already defined in method getAlbumTitle(Album)
+    for (Album album : stock) {
+               ^
+1 error
+➜  homework git:(master) ✗ javac *.java
+➜  homework git:(master) ✗ javac *.java        
+RecordShop.java:27: error: cannot find symbol
+        index = stock.indexOf(album1);
+        ^
+  symbol:   variable index
+  location: class RecordShop
+RecordShop.java:28: error: cannot find symbol
+        return stock.remove(index);
+                            ^
+  symbol:   variable index
+  location: class RecordShop
+RecordShopTest.java:38: error: cannot find symbol
+    recordShop.checkInStock(album);
+              ^
+  symbol:   method checkInStock(Album)
+  location: variable recordShop of type RecordShop
+RecordShopTest.java:39: error: cannot find symbol
+    recordShop.checkInStock(album2);
+              ^
+  symbol:   method checkInStock(Album)
+  location: variable recordShop of type RecordShop
+RecordShopTest.java:40: error: cannot find symbol
+    recordShop.checkInStock(album3);
+              ^
+  symbol:   method checkInStock(Album)
+  location: variable recordShop of type RecordShop
+RecordShopTest.java:43: error: method sellAnAlbum in class RecordShop cannot be applied to given types;
+    recordShop.sellAnAlbum();
+              ^
+  required: Album
+  found: no arguments
+  reason: actual and formal argument lists differ in length
+6 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:27: error: cannot find symbol
+        index = stock.indexOf(album1);
+        ^
+  symbol:   variable index
+  location: class RecordShop
+RecordShop.java:28: error: cannot find symbol
+        return stock.remove(index);
+                            ^
+  symbol:   variable index
+  location: class RecordShop
+2 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:28: error: incompatible types: Album cannot be converted to String
+        return stock.remove(index);
+                           ^
+1 error
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:28: error: '.class' expected
+        return stock.remove(int index);
+                                ^
+RecordShop.java:28: error: ';' expected
+        return stock.remove(int index);
+                                     ^
+2 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:28: error: incompatible types: Album cannot be converted to String
+        return stock.remove(index);
+                           ^
+1 error
+➜  homework git:(master) ✗ javac *.java
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+...
+Time: 0.004
+
+OK (3 tests)
+
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+...
+Time: 0.009
+
+OK (3 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+RecordShopTest.java:38: error: cannot find symbol
+    recordShop.checkInStock(album);
+              ^
+  symbol:   method checkInStock(Album)
+  location: variable recordShop of type RecordShop
+RecordShopTest.java:39: error: cannot find symbol
+    recordShop.checkInStock(album2);
+              ^
+  symbol:   method checkInStock(Album)
+  location: variable recordShop of type RecordShop
+RecordShopTest.java:40: error: cannot find symbol
+    recordShop.checkInStock(album3);
+              ^
+  symbol:   method checkInStock(Album)
+  location: variable recordShop of type RecordShop
+RecordShopTest.java:42: error: method sellAnAlbum in class RecordShop cannot be applied to given types;
+    recordShop.sellAnAlbum();
+              ^
+  required: Album
+  found: no arguments
+  reason: actual and formal argument lists differ in length
+4 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShopTest.java:36: error: cannot find symbol
+    recordShop.checkInStock(album);
+              ^
+  symbol:   method checkInStock(Album)
+  location: variable recordShop of type RecordShop
+RecordShopTest.java:40: error: method sellAnAlbum in class RecordShop cannot be applied to given types;
+    recordShop.sellAnAlbum();
+              ^
+  required: Album
+  found: no arguments
+  reason: actual and formal argument lists differ in length
+2 errors
+➜  homework git:(master) ✗ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+➜  homework git:(master) ✗ javac *.java
+RecordShopTest.java:36: error: cannot find symbol
+    recordShop.checkInStock(album);
+              ^
+  symbol:   method checkInStock(Album)
+  location: variable recordShop of type RecordShop
+RecordShopTest.java:40: error: method sellAnAlbum in class RecordShop cannot be applied to given types;
+    recordShop.sellAnAlbum();
+              ^
+  required: Album
+  found: no arguments
+  reason: actual and formal argument lists differ in length
+2 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShopTest.java:40: error: method sellAnAlbum in class RecordShop cannot be applied to given types;
+    recordShop.sellAnAlbum();
+              ^
+  required: Album
+  found: no arguments
+  reason: actual and formal argument lists differ in length
+1 error
+➜  homework git:(master) ✗ javac *.java
+RecordShopTest.java:36: error: ')' expected
+    recordShop.bookInStock(Album album);
+                                ^
+RecordShopTest.java:36: error: illegal start of expression
+    recordShop.bookInStock(Album album);
+                                      ^
+2 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShopTest.java:40: error: method sellAnAlbum in class RecordShop cannot be applied to given types;
+    recordShop.sellAnAlbum();
+              ^
+  required: Album
+  found: no arguments
+  reason: actual and formal argument lists differ in length
+1 error
+➜  homework git:(master) ✗ javac *.java
+RecordShopTest.java:40: error: method sellAnAlbum in class RecordShop cannot be applied to given types;
+    recordShop.sellAnAlbum();
+              ^
+  required: Album
+  found: no arguments
+  reason: actual and formal argument lists differ in length
+1 error
+➜  homework git:(master) ✗ javac *.java
+RecordShopTest.java:40: error: method sellAnAlbum in class RecordShop cannot be applied to given types;
+    recordShop.sellAnAlbum();
+              ^
+  required: Album
+  found: no arguments
+  reason: actual and formal argument lists differ in length
+1 error
+➜  homework git:(master) ✗ javac *.java
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+....
+Time: 0.005
+
+OK (4 tests)
+
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+....
+Time: 0.006
+
+OK (4 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+.E...
+Time: 0.008
+There was 1 failure:
+1) sellAlbum(RecordShopTest)
+java.util.ConcurrentModificationException
+	at java.util.ArrayList$Itr.checkForComodification(ArrayList.java:901)
+	at java.util.ArrayList$Itr.next(ArrayList.java:851)
+	at RecordShop.sellAnAlbum(RecordShop.java:25)
+	at RecordShopTest.sellAlbum(RecordShopTest.java:41)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runners.Suite.runChild(Suite.java:127)
+	at org.junit.runners.Suite.runChild(Suite.java:26)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:160)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:138)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:117)
+	at org.junit.runner.JUnitCore.runMain(JUnitCore.java:96)
+	at org.junit.runner.JUnitCore.runMainAndExit(JUnitCore.java:47)
+	at org.junit.runner.JUnitCore.main(JUnitCore.java:40)
+
+FAILURES!!!
+Tests run: 4,  Failures: 1
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+.E...
+Time: 0.007
+There was 1 failure:
+1) sellAlbum(RecordShopTest)
+java.util.ConcurrentModificationException
+	at java.util.ArrayList$Itr.checkForComodification(ArrayList.java:901)
+	at java.util.ArrayList$Itr.next(ArrayList.java:851)
+	at RecordShop.sellAnAlbum(RecordShop.java:25)
+	at RecordShopTest.sellAlbum(RecordShopTest.java:41)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runners.Suite.runChild(Suite.java:127)
+	at org.junit.runners.Suite.runChild(Suite.java:26)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:160)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:138)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:117)
+	at org.junit.runner.JUnitCore.runMain(JUnitCore.java:96)
+	at org.junit.runner.JUnitCore.runMainAndExit(JUnitCore.java:47)
+	at org.junit.runner.JUnitCore.main(JUnitCore.java:40)
+
+FAILURES!!!
+Tests run: 4,  Failures: 1
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+....
+Time: 0.01
+
+OK (4 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+RecordShop.java:27: error: cannot find symbol
+         index = stock.indexOf(album1);
+         ^
+  symbol:   variable index
+  location: class RecordShop
+RecordShop.java:28: error: cannot find symbol
+         stock.remove(index);
+                      ^
+  symbol:   variable index
+  location: class RecordShop
+2 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:27: error: cannot find symbol
+         i = stock.indexOf(album1);
+         ^
+  symbol:   variable i
+  location: class RecordShop
+RecordShop.java:28: error: cannot find symbol
+         stock.remove(i);
+                      ^
+  symbol:   variable i
+  location: class RecordShop
+2 errors
+➜  homework git:(master) ✗ javac *.java        
+RecordShopTest.java:40: error: ')' expected
+    assertEquals(1 recordShop.sellAnAlbum());
+                  ^
+RecordShopTest.java:40: error: illegal start of expression
+    assertEquals(1 recordShop.sellAnAlbum());
+                             ^
+RecordShopTest.java:40: error: ';' expected
+    assertEquals(1 recordShop.sellAnAlbum());
+                                         ^
+3 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShopTest.java:40: error: ')' expected
+    assertEquals((1) recordShop.sellAnAlbum());
+                    ^
+RecordShopTest.java:40: error: illegal start of expression
+    assertEquals((1) recordShop.sellAnAlbum());
+                               ^
+RecordShopTest.java:40: error: ';' expected
+    assertEquals((1) recordShop.sellAnAlbum());
+                                           ^
+3 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShopTest.java:40: error: ')' expected
+    assertEquals(1 recordShop.sellAnAlbum());
+                  ^
+RecordShopTest.java:40: error: illegal start of expression
+    assertEquals(1 recordShop.sellAnAlbum());
+                             ^
+RecordShopTest.java:40: error: ';' expected
+    assertEquals(1 recordShop.sellAnAlbum());
+                                         ^
+3 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShopTest.java:40: error: ')' expected
+    assertEquals(1 recordShop.sellAnAlbum(album));
+                  ^
+RecordShopTest.java:40: error: illegal start of expression
+    assertEquals(1 recordShop.sellAnAlbum(album));
+                             ^
+RecordShopTest.java:40: error: ';' expected
+    assertEquals(1 recordShop.sellAnAlbum(album));
+                                         ^
+RecordShopTest.java:40: error: not a statement
+    assertEquals(1 recordShop.sellAnAlbum(album));
+                                          ^
+RecordShopTest.java:40: error: ';' expected
+    assertEquals(1 recordShop.sellAnAlbum(album));
+                                               ^
+5 errors
+➜  homework git:(master) ✗ javac *.java        
+RecordShopTest.java:40: error: ')' expected
+    assertEquals(1 recordShop.sellAnAlbum(album));
+                  ^
+RecordShopTest.java:40: error: illegal start of expression
+    assertEquals(1 recordShop.sellAnAlbum(album));
+                             ^
+RecordShopTest.java:40: error: ';' expected
+    assertEquals(1 recordShop.sellAnAlbum(album));
+                                         ^
+RecordShopTest.java:40: error: not a statement
+    assertEquals(1 recordShop.sellAnAlbum(album));
+                                          ^
+RecordShopTest.java:40: error: ';' expected
+    assertEquals(1 recordShop.sellAnAlbum(album));
+                                               ^
+5 errors
+➜  homework git:(master) ✗ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+➜  homework git:(master) ✗ javac *.java
+RecordShopTest.java:40: error: ')' expected
+    assertEquals(1 recordShop.sellAnAlbum(album));
+                  ^
+RecordShopTest.java:40: error: illegal start of expression
+    assertEquals(1 recordShop.sellAnAlbum(album));
+                             ^
+RecordShopTest.java:40: error: ';' expected
+    assertEquals(1 recordShop.sellAnAlbum(album));
+                                         ^
+RecordShopTest.java:40: error: not a statement
+    assertEquals(1 recordShop.sellAnAlbum(album));
+                                          ^
+RecordShopTest.java:40: error: ';' expected
+    assertEquals(1 recordShop.sellAnAlbum(album));
+                                               ^
+5 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:27: error: incompatible types: int cannot be converted to String
+         return stock.indexOf(album1);
+                             ^
+1 error
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:27: error: incompatible types: int cannot be converted to String
+         return stock.indexOf(album1);
+                             ^
+1 error
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:27: error: incompatible types: int cannot be converted to String
+         return stock.indexOf(album1);
+                             ^
+1 error
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:31: error: incompatible types: <null> cannot be converted to int
+    return null;
+           ^
+1 error
+➜  homework git:(master) ✗ javac *.java
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+....
+Time: 0.006
+
+OK (4 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+....
+Time: 0.005
+
+OK (4 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+....
+Time: 0.008
+
+OK (4 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+RecordShop.java:35: error: cannot find symbol
+    index = findIndex(album);
+    ^
+  symbol:   variable index
+  location: class RecordShop
+RecordShop.java:36: error: incompatible types: unexpected return value
+    return stock.remove(index);
+                       ^
+RecordShop.java:36: error: cannot find symbol
+    return stock.remove(index);
+                        ^
+  symbol:   variable index
+  location: class RecordShop
+3 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:36: error: incompatible types: unexpected return value
+    return stock.remove(index);
+                       ^
+1 error
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:35: error: cannot find symbol
+    index = findIndex(album);
+    ^
+  symbol:   variable index
+  location: class RecordShop
+RecordShop.java:36: error: incompatible types: unexpected return value
+    return stock.remove(index);
+                       ^
+RecordShop.java:36: error: cannot find symbol
+    return stock.remove(index);
+                        ^
+  symbol:   variable index
+  location: class RecordShop
+3 errors
+➜  homework git:(master) ✗ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:35: error: cannot find symbol
+    index = findIndex(album);
+    ^
+  symbol:   variable index
+  location: class RecordShop
+RecordShop.java:36: error: incompatible types: unexpected return value
+    return stock.remove(index);
+                       ^
+RecordShop.java:36: error: cannot find symbol
+    return stock.remove(index);
+                        ^
+  symbol:   variable index
+  location: class RecordShop
+3 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:35: error: ')' expected
+    index = findIndex(Album album);
+                           ^
+RecordShop.java:35: error: illegal start of expression
+    index = findIndex(Album album);
+                                 ^
+2 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:35: error: ')' expected
+    index = findIndex(Album album);
+                           ^
+RecordShop.java:35: error: illegal start of expression
+    index = findIndex(Album album);
+                                 ^
+2 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:35: error: cannot find symbol
+    index = findIndex(album);
+    ^
+  symbol:   variable index
+  location: class RecordShop
+RecordShop.java:36: error: incompatible types: unexpected return value
+    return stock.remove(index);
+                       ^
+RecordShop.java:36: error: cannot find symbol
+    return stock.remove(index);
+                        ^
+  symbol:   variable index
+  location: class RecordShop
+3 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:35: error: incompatible types: int cannot be converted to String
+    String index = findIndex(album);
+                            ^
+RecordShop.java:36: error: incompatible types: unexpected return value
+    return stock.remove(index);
+                       ^
+2 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:36: error: incompatible types: unexpected return value
+    return stock.remove(index);
+                       ^
+1 error
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:35: error: method findIndex in class RecordShop cannot be applied to given types;
+    int index = this.findIndex();
+                    ^
+  required: Album
+  found: no arguments
+  reason: actual and formal argument lists differ in length
+RecordShop.java:36: error: incompatible types: unexpected return value
+    return stock.remove(index);
+                       ^
+2 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:36: error: incompatible types: unexpected return value
+    return stock.remove(index);
+                       ^
+1 error
+➜  homework git:(master) ✗ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:36: error: incompatible types: unexpected return value
+    return stock.remove(index);
+                       ^
+1 error
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:35: error: ';' expected
+    int index = 0
+                 ^
+RecordShop.java:36: error: ';' expected
+    index ++ this.findIndex(album);
+            ^
+2 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:36: error: ';' expected
+    index ++ this.findIndex(album);
+            ^
+1 error
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:37: error: incompatible types: unexpected return value
+    return stock.remove(index);
+                       ^
+1 error
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:36: error: incompatible types: unexpected return value
+    return stock.remove(index);
+                       ^
+1 error
+➜  homework git:(master) ✗ javac *.java
+RecordShopTest.java:51: error: ';' expected
+    assertEquals("My Bloody Valentine", album.title)
+                                                    ^
+1 error
+➜  homework git:(master) ✗ javac *.java
+RecordShopTest.java:51: error: ';' expected
+    assertEquals("My Bloody Valentine", album.getTitle())
+                                                         ^
+1 error
+➜  homework git:(master) ✗ javac *.java
+RecordShopTest.java:51: error: ';' expected
+    assertEquals("My Bloody Valentine", album.getTitle(album))
+                                                              ^
+1 error
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:39: error: incompatible types: unexpected return value
+         return stock.remove(i);
+                            ^
+RecordShop.java:42: error: incompatible types: unexpected return value
+    return null;
+           ^
+RecordShopTest.java:51: error: method getTitle in class Album cannot be applied to given types;
+    assertEquals("My Bloody Valentine", album.getTitle(album));
+                                             ^
+  required: no arguments
+  found: Album
+  reason: actual and formal argument lists differ in length
+3 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:39: error: incompatible types: unexpected return value
+         return stock.remove(i);
+                            ^
+RecordShop.java:42: error: incompatible types: unexpected return value
+    return null;
+           ^
+2 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:39: error: incompatible types: unexpected return value
+         return stock.remove(i);
+                            ^
+RecordShop.java:42: error: incompatible types: unexpected return value
+    return null;
+           ^
+2 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:39: error: incompatible types: unexpected return value
+         return stock.remove(i);
+                            ^
+RecordShop.java:42: error: incompatible types: unexpected return value
+    return -1;
+           ^
+2 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:39: error: incompatible types: unexpected return value
+         return stock.remove(i);
+                            ^
+RecordShop.java:42: error: incompatible types: unexpected return value
+    return null;
+           ^
+2 errors
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+....
+Time: 0.006
+
+OK (4 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+RecordShop.java:39: error: incompatible types: unexpected return value
+         return stock.remove(i);
+                            ^
+RecordShop.java:42: error: incompatible types: unexpected return value
+    return null;
+           ^
+2 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:39: error: incompatible types: Album cannot be converted to int
+         return stock.remove(i);
+                            ^
+RecordShop.java:42: error: incompatible types: <null> cannot be converted to int
+    return null;
+           ^
+2 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:39: error: incompatible types: Album cannot be converted to int
+         return stock.remove(i);
+                            ^
+1 error
+➜  homework git:(master) ✗ javac *.java        
+RecordShop.java:39: error: incompatible types: unexpected return value
+         return stock.remove(i);
+                            ^
+RecordShop.java:42: error: incompatible types: unexpected return value
+    return null;
+           ^
+2 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:42: error: incompatible types: unexpected return value
+    return null;
+           ^
+1 error
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:42: error: incompatible types: unexpected return value
+    return -1;
+           ^
+1 error
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:42: error: incompatible types: unexpected return value
+    return null;
+           ^
+1 error
+➜  homework git:(master) ✗ javac *.java 
+RecordShop.java:42: error: incompatible types: unexpected return value
+    return null;
+           ^
+1 error
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:38: error: cannot find symbol
+        i = stock.indexOf(album1);
+        ^
+  symbol:   variable i
+  location: class RecordShop
+RecordShop.java:39: error: cannot find symbol
+          stock.remove(i);
+                       ^
+  symbol:   variable i
+  location: class RecordShop
+RecordShop.java:42: error: incompatible types: unexpected return value
+    return null;
+           ^
+3 errors
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:42: error: incompatible types: unexpected return value
+    return null;
+           ^
+1 error
+➜  homework git:(master) ✗ javac *.java
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+.....
+Time: 0.008
+
+OK (5 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+RecordShop.java:31: error: missing return statement
+  }
+  ^
+1 error
+➜  homework git:(master) ✗ javac *.java
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+.....
+Time: 0.01
+
+OK (5 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+..E...
+Time: 0.01
+There was 1 failure:
+1) sellAnAlbum(RecordShopTest)
+java.util.ConcurrentModificationException
+	at java.util.ArrayList$Itr.checkForComodification(ArrayList.java:901)
+	at java.util.ArrayList$Itr.next(ArrayList.java:851)
+	at RecordShop.sellAlbum(RecordShop.java:36)
+	at RecordShopTest.sellAnAlbum(RecordShopTest.java:50)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runners.Suite.runChild(Suite.java:127)
+	at org.junit.runners.Suite.runChild(Suite.java:26)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:160)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:138)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:117)
+	at org.junit.runner.JUnitCore.runMain(JUnitCore.java:96)
+	at org.junit.runner.JUnitCore.runMainAndExit(JUnitCore.java:47)
+	at org.junit.runner.JUnitCore.main(JUnitCore.java:40)
+
+FAILURES!!!
+Tests run: 5,  Failures: 1
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+..E...
+Time: 0.007
+There was 1 failure:
+1) sellAnAlbum(RecordShopTest)
+java.util.ConcurrentModificationException
+	at java.util.ArrayList$Itr.checkForComodification(ArrayList.java:901)
+	at java.util.ArrayList$Itr.next(ArrayList.java:851)
+	at RecordShop.sellAlbum(RecordShop.java:36)
+	at RecordShopTest.sellAnAlbum(RecordShopTest.java:50)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runners.Suite.runChild(Suite.java:127)
+	at org.junit.runners.Suite.runChild(Suite.java:26)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:160)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:138)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:117)
+	at org.junit.runner.JUnitCore.runMain(JUnitCore.java:96)
+	at org.junit.runner.JUnitCore.runMainAndExit(JUnitCore.java:47)
+	at org.junit.runner.JUnitCore.main(JUnitCore.java:40)
+
+FAILURES!!!
+Tests run: 5,  Failures: 1
+
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+..E...
+Time: 0.009
+There was 1 failure:
+1) sellAnAlbum(RecordShopTest)
+java.util.ConcurrentModificationException
+	at java.util.ArrayList$Itr.checkForComodification(ArrayList.java:901)
+	at java.util.ArrayList$Itr.next(ArrayList.java:851)
+	at RecordShop.sellAlbum(RecordShop.java:36)
+	at RecordShopTest.sellAnAlbum(RecordShopTest.java:50)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runners.Suite.runChild(Suite.java:127)
+	at org.junit.runners.Suite.runChild(Suite.java:26)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:160)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:138)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:117)
+	at org.junit.runner.JUnitCore.runMain(JUnitCore.java:96)
+	at org.junit.runner.JUnitCore.runMainAndExit(JUnitCore.java:47)
+	at org.junit.runner.JUnitCore.main(JUnitCore.java:40)
+
+FAILURES!!!
+Tests run: 5,  Failures: 1
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+.....
+Time: 0.007
+
+OK (5 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest                    
+JUnit version 4.11
+.....
+Time: 0.006
+
+OK (5 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+.....
+Time: 0.005
+
+OK (5 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+.....
+Time: 0.01
+
+OK (5 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+..E...
+Time: 0.012
+There was 1 failure:
+1) sellAnAlbum(RecordShopTest)
+java.util.ConcurrentModificationException
+	at java.util.ArrayList$Itr.checkForComodification(ArrayList.java:901)
+	at java.util.ArrayList$Itr.next(ArrayList.java:851)
+	at RecordShop.sellAlbum(RecordShop.java:36)
+	at RecordShopTest.sellAnAlbum(RecordShopTest.java:49)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runners.Suite.runChild(Suite.java:127)
+	at org.junit.runners.Suite.runChild(Suite.java:26)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:160)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:138)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:117)
+	at org.junit.runner.JUnitCore.runMain(JUnitCore.java:96)
+	at org.junit.runner.JUnitCore.runMainAndExit(JUnitCore.java:47)
+	at org.junit.runner.JUnitCore.main(JUnitCore.java:40)
+
+FAILURES!!!
+Tests run: 5,  Failures: 1
+
+➜  homework git:(master) ✗ javac *.java        
+RecordShop.java:39: error: array required, but ArrayList<Album> found
+          stock[i] = null;
+               ^
+1 error
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:42: error: cannot find symbol
+    stock.remove(i);
+                 ^
+  symbol:   variable i
+  location: class RecordShop
+1 error
+➜  homework git:(master) ✗ javac *.java        
+RecordShop.java:41: error: cannot find symbol
+    stock.remove(i);
+                 ^
+  symbol:   variable i
+  location: class RecordShop
+1 error
+➜  homework git:(master) ✗ javac *.java
+RecordShop.java:39: error: incompatible types: Album cannot be converted to int
+          return stock.remove(i);
+                             ^
+1 error
+➜  homework git:(master) ✗ javac *.java
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+..E...
+Time: 0.008
+There was 1 failure:
+1) sellAnAlbum(RecordShopTest)
+java.util.ConcurrentModificationException
+	at java.util.ArrayList$Itr.checkForComodification(ArrayList.java:901)
+	at java.util.ArrayList$Itr.next(ArrayList.java:851)
+	at RecordShop.sellAlbum(RecordShop.java:36)
+	at RecordShopTest.sellAnAlbum(RecordShopTest.java:49)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runners.Suite.runChild(Suite.java:127)
+	at org.junit.runners.Suite.runChild(Suite.java:26)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:160)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:138)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:117)
+	at org.junit.runner.JUnitCore.runMain(JUnitCore.java:96)
+	at org.junit.runner.JUnitCore.runMainAndExit(JUnitCore.java:47)
+	at org.junit.runner.JUnitCore.main(JUnitCore.java:40)
+
+FAILURES!!!
+Tests run: 5,  Failures: 1
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+..E...
+Time: 0.009
+There was 1 failure:
+1) sellAnAlbum(RecordShopTest)
+java.util.ConcurrentModificationException
+	at java.util.ArrayList$Itr.checkForComodification(ArrayList.java:901)
+	at java.util.ArrayList$Itr.next(ArrayList.java:851)
+	at RecordShop.sellAlbum(RecordShop.java:36)
+	at RecordShopTest.sellAnAlbum(RecordShopTest.java:49)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runners.Suite.runChild(Suite.java:127)
+	at org.junit.runners.Suite.runChild(Suite.java:26)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:160)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:138)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:117)
+	at org.junit.runner.JUnitCore.runMain(JUnitCore.java:96)
+	at org.junit.runner.JUnitCore.runMainAndExit(JUnitCore.java:47)
+	at org.junit.runner.JUnitCore.main(JUnitCore.java:40)
+
+FAILURES!!!
+Tests run: 5,  Failures: 1
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+.....
+Time: 0.006
+
+OK (5 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+..E...
+Time: 0.009
+There was 1 failure:
+1) sellAnAlbum(RecordShopTest)
+java.util.ConcurrentModificationException
+	at java.util.ArrayList$Itr.checkForComodification(ArrayList.java:901)
+	at java.util.ArrayList$Itr.next(ArrayList.java:851)
+	at RecordShop.sellAlbum(RecordShop.java:36)
+	at RecordShopTest.sellAnAlbum(RecordShopTest.java:49)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runners.Suite.runChild(Suite.java:127)
+	at org.junit.runners.Suite.runChild(Suite.java:26)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:160)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:138)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:117)
+	at org.junit.runner.JUnitCore.runMain(JUnitCore.java:96)
+	at org.junit.runner.JUnitCore.runMainAndExit(JUnitCore.java:47)
+	at org.junit.runner.JUnitCore.main(JUnitCore.java:40)
+
+FAILURES!!!
+Tests run: 5,  Failures: 1
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+..E...
+Time: 0.008
+There was 1 failure:
+1) sellAnAlbum(RecordShopTest)
+java.util.ConcurrentModificationException
+	at java.util.ArrayList$Itr.checkForComodification(ArrayList.java:901)
+	at java.util.ArrayList$Itr.next(ArrayList.java:851)
+	at RecordShop.sellAlbum(RecordShop.java:36)
+	at RecordShopTest.sellAnAlbum(RecordShopTest.java:49)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runners.Suite.runChild(Suite.java:127)
+	at org.junit.runners.Suite.runChild(Suite.java:26)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:160)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:138)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:117)
+	at org.junit.runner.JUnitCore.runMain(JUnitCore.java:96)
+	at org.junit.runner.JUnitCore.runMainAndExit(JUnitCore.java:47)
+	at org.junit.runner.JUnitCore.main(JUnitCore.java:40)
+
+FAILURES!!!
+Tests run: 5,  Failures: 1
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+.....
+Time: 0.006
+
+OK (5 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+.....
+Time: 0.008
+
+OK (5 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+.....
+Time: 0.006
+
+OK (5 tests)
+
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+.....
+Time: 0.005
+
+OK (5 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+^[[A%                                                                                                                                                                                ➜  homework git:(master) ✗ javac *.java                   
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+.....
+Time: 0.008
+
+OK (5 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+..E...
+Time: 0.008
+There was 1 failure:
+1) sellAnAlbum(RecordShopTest)
+java.util.ConcurrentModificationException
+	at java.util.ArrayList$Itr.checkForComodification(ArrayList.java:901)
+	at java.util.ArrayList$Itr.next(ArrayList.java:851)
+	at RecordShop.sellAlbum(RecordShop.java:36)
+	at RecordShopTest.sellAnAlbum(RecordShopTest.java:49)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runners.Suite.runChild(Suite.java:127)
+	at org.junit.runners.Suite.runChild(Suite.java:26)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:160)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:138)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:117)
+	at org.junit.runner.JUnitCore.runMain(JUnitCore.java:96)
+	at org.junit.runner.JUnitCore.runMainAndExit(JUnitCore.java:47)
+	at org.junit.runner.JUnitCore.main(JUnitCore.java:40)
+
+FAILURES!!!
+Tests run: 5,  Failures: 1
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+.....
+Time: 0.011
+
+OK (5 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+..E...
+Time: 0.01
+There was 1 failure:
+1) sellAnAlbum(RecordShopTest)
+java.util.ConcurrentModificationException
+	at java.util.ArrayList$Itr.checkForComodification(ArrayList.java:901)
+	at java.util.ArrayList$Itr.next(ArrayList.java:851)
+	at RecordShop.sellAlbum(RecordShop.java:36)
+	at RecordShopTest.sellAnAlbum(RecordShopTest.java:49)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runners.Suite.runChild(Suite.java:127)
+	at org.junit.runners.Suite.runChild(Suite.java:26)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:160)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:138)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:117)
+	at org.junit.runner.JUnitCore.runMain(JUnitCore.java:96)
+	at org.junit.runner.JUnitCore.runMainAndExit(JUnitCore.java:47)
+	at org.junit.runner.JUnitCore.main(JUnitCore.java:40)
+
+FAILURES!!!
+Tests run: 5,  Failures: 1
+
+➜  homework git:(master) ✗ javac *.java        
+^[[A%                                                                                                                                                                                ➜  homework git:(master) ✗ javac *.java        
+^[[A^[[A%                                                                                                                                                                            ➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+.....
+Time: 0.01
+
+OK (5 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+.....
+Time: 0.006
+
+OK (5 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+..E...
+Time: 0.008
+There was 1 failure:
+1) sellAnAlbum(RecordShopTest)
+java.util.ConcurrentModificationException
+	at java.util.ArrayList$Itr.checkForComodification(ArrayList.java:901)
+	at java.util.ArrayList$Itr.next(ArrayList.java:851)
+	at RecordShop.sellAlbum(RecordShop.java:36)
+	at RecordShopTest.sellAnAlbum(RecordShopTest.java:49)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runners.Suite.runChild(Suite.java:127)
+	at org.junit.runners.Suite.runChild(Suite.java:26)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:160)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:138)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:117)
+	at org.junit.runner.JUnitCore.runMain(JUnitCore.java:96)
+	at org.junit.runner.JUnitCore.runMainAndExit(JUnitCore.java:47)
+	at org.junit.runner.JUnitCore.main(JUnitCore.java:40)
+
+FAILURES!!!
+Tests run: 5,  Failures: 1
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+..E...
+Time: 0.008
+There was 1 failure:
+1) sellAnAlbum(RecordShopTest)
+java.util.ConcurrentModificationException
+	at java.util.ArrayList$Itr.checkForComodification(ArrayList.java:901)
+	at java.util.ArrayList$Itr.next(ArrayList.java:851)
+	at RecordShop.sellAlbum(RecordShop.java:36)
+	at RecordShopTest.sellAnAlbum(RecordShopTest.java:49)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runners.Suite.runChild(Suite.java:127)
+	at org.junit.runners.Suite.runChild(Suite.java:26)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:160)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:138)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:117)
+	at org.junit.runner.JUnitCore.runMain(JUnitCore.java:96)
+	at org.junit.runner.JUnitCore.runMainAndExit(JUnitCore.java:47)
+	at org.junit.runner.JUnitCore.main(JUnitCore.java:40)
+
+FAILURES!!!
+Tests run: 5,  Failures: 1
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+.....
+Time: 0.006
+
+OK (5 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+RecordShop.java:46: error: incompatible types: unexpected return value
+    return stock.remove(index);
+                       ^
+1 error
+➜  homework git:(master) ✗ javac *.java        
+RecordShop.java:46: error: incompatible types: Album cannot be converted to int
+    return stock.remove(index);
+                       ^
+1 error
+➜  homework git:(master) ✗ javac *.java
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+.....
+Time: 0.005
+
+OK (5 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+.....
+Time: 0.007
+
+OK (5 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+.....
+Time: 0.005
+
+OK (5 tests)
+
+➜  homework git:(master) ✗ javac *.java        
+➜  homework git:(master) ✗ junit RecordShopTest
+JUnit version 4.11
+.....
+Time: 0.008
+
+OK (5 tests)
+
+➜  homework git:(master) ✗ git add .
+➜  homework git:(master) ✗ git commit -m "5 tests - removes item by index number"
+[master 9b273ff] 5 tests - removes item by index number
+ 4 files changed, 18 insertions(+), 18 deletions(-)
+ rewrite RecordShop.class (64%)
+➜  homework git:(master) git remote add origin git@github.com:russelljohnwilliams/week-10-day-2-homework.git
+
+➜  homework git:(master) git push origin master 
+Counting objects: 47, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (46/46), done.
+Writing objects: 100% (47/47), 9.56 KiB | 0 bytes/s, done.
+Total 47 (delta 25), reused 0 (delta 0)
+To git@github.com:russelljohnwilliams/week-10-day-2-homework.git
+ * [new branch]      master -> master
+➜  homework git:(master) javac *.java                                                                       
+➜  homework git:(master) junit RecordShopTest                                                               
+JUnit version 4.11
+.....
+Time: 0.009
+
+OK (5 tests)
+
+➜  homework git:(master) junit AlbumTest                                                                    
+JUnit version 4.11
+...
+Time: 0.008
+
+OK (3 tests)
+
+➜  homework git:(master) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+➜  homework git:(master) junit AlbumTest
+JUnit version 4.11
+...
+Time: 0.005
+
+OK (3 tests)
+
+➜  homework git:(master) junit RecordShopTest
+JUnit version 4.11
+.....
+Time: 0.005
+
+OK (5 tests)
+
+➜  homework git:(master) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

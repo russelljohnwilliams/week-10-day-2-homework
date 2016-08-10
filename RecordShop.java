@@ -24,8 +24,7 @@ public class RecordShop {
   public int findIndex(Album album){
     for (Album albumz : stock) {
       if (albumz.getTitle() == album.title) {
-         return stock.indexOf(albumz);
-         // stock.remove(i);
+        return stock.indexOf(albumz);
       }
     }
     return -1;
@@ -36,17 +35,22 @@ public class RecordShop {
     stock.remove(index);
   }
 
-  // public void sellAlbum(Album album){
-  //   for (Album albumz : stock) {
-  //     if (albumz.getTitle() == album.title) {
-  //        int i = stock.indexOf(albumz);
-  //         stock.remove(i);
-  //     }
-  //   }
-  // }
+// public void sellAlbum(Album album){
+//   for (Album albumz : stock) {
+//     if (albumz.getTitle() == album.title) {
+//        int i = stock.indexOf(albumz);
+//         stock.remove(i);
+//     }
+//   }
+// }
 
-
-
+  public double totalValueOfStock(){
+    double total = 0;
+    for(Album album : stock){
+      total += album.price;
+    }
+    return total;
+  }
 }
 
 

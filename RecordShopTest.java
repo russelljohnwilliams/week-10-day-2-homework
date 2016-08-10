@@ -50,4 +50,12 @@ public class RecordShopTest{
     assertEquals(2, recordShop.stockCheck());
   }
 
+  @Test
+  public void totalValueOfStock(){
+    recordShop.bookInStock(album);
+    recordShop.bookInStock(album2);
+    recordShop.bookInStock(album3);
+    assertEquals(22.97, recordShop.totalValueOfStock(), 0.01);
+  }
+
 }
